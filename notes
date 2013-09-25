@@ -1,0 +1,57 @@
+- What we are going to do
+  - Informal Tutorial on using Kohana
+  - I assume you are coders and that you know PHP and if you don't it should be still understandable if you know OOP
+  - Coverage
+    - quick and simple but exhaustive overview of functionality
+  - We are going to add a small module 
+  - We are going to illustrate its use with the lamest app you've ever seen
+  - Why
+    - don't want to insult anyone with a Hello World app
+    - it allows us to explore a little bit more of kohana
+  - All the code is on github
+
+- What kohana is
+  - MVC with cascading filesystem
+  - very lightweight
+
+- What kohana is not
+  - no code generation
+    - no commands to create classes etc
+  - no super duper ORM or database integration ala Rails with its migrations
+
+- Quick compare with other frameworks Play, Rails, Zend, WordPress
+
+- It's easy to get started
+  - show how to download, install and basic page.
+
+- Point attention to the kohana file structure
+
+- Let's plan
+  - if you are like me you've heard about the MVC model a million time so I'll spare you that, so
+  - don't worry we'll get to see Controller and View, and Models too!
+  - we are going to create a module that adds CSRF attack prevention measures to Kohana 
+  - so we get to explore a variety of things
+
+  - how it's going to work
+    - basic CSRF attack and prevention technique
+      - plonk some unique data every time an important form is accessed by a user with a valid session and we attach the data to that session
+      - when the controller action that handles that form is requested we check if the unique data from the form matches what's in the session
+    - so we want to give the developer the ability to easily add csrf token data to any form
+    - so we want to give the developer an easy way to check csrf data from forms when an action is invoked
+
+- CSRF module code
+  - Take home point one!
+    - Kohana introduces Transparent extensions as a result of the cascading filesystem
+      - talk about merging, like css
+    - we can therefore extend kohana Form helper simply like this:
+      - is it a bit contrived? perhaps but if we do it like this, now the rest of kohana is using our new and improved form
+        and developers can still introduce their own extension to Form (in application) that don't mess with your code
+        i.e. class Form extends Csrf_Form() { // their code here...}
+    - notice I have done the same with the Csrf class!
+
+  - Take home point two!
+    - look ma' no requires!!!!!! thanks to kohana merging and autoloader
+
+  - Take home point three!
+    - Session handling in Kohana! very easy, there are more ways too: native, cookie, database
+
