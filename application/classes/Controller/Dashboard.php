@@ -19,6 +19,8 @@ class Controller_Dashboard extends Controller_Base
 		$user->save();
 
 		//cheers!
-		$this->response->body('<h1>email updated successfully<h1>');
+		$view = View::factory('main');
+		$view->body = '<h1>email updated successfully<h1>';
+		$this->response->body($view->render());
 	}
 } 
